@@ -5,4 +5,5 @@ y = float(input("What's y? "))
 #Round to nearest int
 z = round(x + y)
 
-print(z)
+#Format answer with comma separators
+print(f"{z:,}")
