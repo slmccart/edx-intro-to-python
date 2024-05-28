@@ -2,4 +2,7 @@
 x = float(input("What's x? "))
 y = float(input("What's y? "))
 
-print(round(x + y))
+#Round to nearest int
+z = round(x + y)
+
+print(z)
