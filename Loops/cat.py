@@ -1,13 +1,7 @@
-i = 0
+while True:
+    n = int(input("What's n? "))
+    if n > 0:
+        break
 
-print("while")
-while i < 3:
+for _ in range(n):
     print("meow")
-    i += 1
-
-print("for")
-for _ in range(3):
-    print("meow")
-
-print("Print times 3")
-print("meow\n" * 3, end="")
