@@ -8,3 +8,6 @@ while i < 3:
 print("for")
 for _ in range(3):
     print("meow")
+
+print("Print times 3")
+print("meow\n" * 3, end="")
