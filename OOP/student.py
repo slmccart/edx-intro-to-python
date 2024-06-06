@@ -1,13 +1,13 @@
 def main():
     student = get_student()
-    print(f"{student[0]} from {student[1]}")
+    print(f"{student["name"]} from {student["house"]}")
 
 
 def get_student():
-    name = input("Name: ")
-    house = input("House: ")
-    return name, house
-    # Alternatively create the tuple explicitly
+    student = {}
+    student["name"] = input("Name: ")
+    student["house"] = input("House: ")
+    return student
 
 
 if __name__ == "__main__":
