@@ -7,8 +7,7 @@ students = [
 ]
 
 
-gryffindors = [
-    student["name"] for student in students if student["house"] == "Gryffindor"
-]
+gryffindors = filter(lambda s: s["house"] == "Gryffindor", students)
 
-print(*gryffindors)
+for gryffindor in sorted(gryffindors, key=lambda s: s["name"]):
+    print(gryffindor["name"])
