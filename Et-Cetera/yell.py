@@ -3,7 +3,7 @@ def main():
 
 
 def yell(*words):
-    uppercased = map(str.upper, words)
+    uppercased = [word.upper() for word in words]
     print(*uppercased)
 
 
