@@ -1,4 +1,5 @@
 import sys
+from cipher import Cipher
 
 
 def main():
@@ -12,25 +13,8 @@ def main():
 
 
 def encode(s, shift):
-    """Encode a string using a substituion cypher, shifting each character by the value of shift"""
-    # A = 65
-    low_val = 65
-    # Z = 90
-    high_val = 90
-
-    encoded_string = ""
-    for char in s:
-        int_val = ord(char) + shift
-        if int_val < low_val:
-            delta = low_val - int_val
-            int_val = (high_val + 1) - delta
-        elif int_val > high_val:
-            delta = int_val - high_val
-            int_val = (low_val - 1) + delta
-
-        encoded_string += chr(int_val)
-
-    return encoded_string
+    cipher = Cipher(shift)
+    return cipher.encode(s)
 
 
 if __name__ == "__main__":
