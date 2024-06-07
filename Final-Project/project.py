@@ -7,7 +7,11 @@ def main():
     # Check for non-alpha
     if not phrase.isalpha():
         sys.exit("Only alphabetic characters are allowed")
-    shift = int(input("Shift value: "))
+
+    try:
+        shift = int(input("Shift value: "))
+    except ValueError:
+        sys.exit("Shift value must be an integer")
 
     print(encode(phrase, shift))
 
