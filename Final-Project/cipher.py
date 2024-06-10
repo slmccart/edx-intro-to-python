@@ -20,7 +20,7 @@ class Cipher:
         return self.__shift_string(s, self._shift * -1)
 
     def __shift_string(self, s, shift):
-        """Encode a string using a substituion cypher, shifting each character by the value of shift"""
+        """Encode a string using a substitution cypher, shifting each character by the value of shift"""
 
         shifted_string = ""
         for char in s:
