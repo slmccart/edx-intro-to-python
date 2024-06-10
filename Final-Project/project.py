@@ -19,6 +19,7 @@ def main():
 
 
 def encode(s, shift):
+    # TODO: Refactor encode and decode
     encoded_phrase = ""
     cipher = Cipher(shift)
 
@@ -28,9 +29,25 @@ def encode(s, shift):
         if not word.isalpha():
             raise ValueError
         else:
+            # TODO: Opportunity to use map with encode or decode as the function?
             encoded_phrase += cipher.encode(word) + " "
 
     return encoded_phrase.strip()
+
+
+def decode(s, original_shift):
+    decoded_phrase = ""
+    cipher = Cipher(original_shift)
+
+    words = s.upper().split(" ")
+    for word in words:
+        # Check for non-alpha
+        if not word.isalpha():
+            raise ValueError
+        else:
+            decoded_phrase += cipher.decode(word) + " "
+
+    return decoded_phrase.strip()
 
 
 if __name__ == "__main__":

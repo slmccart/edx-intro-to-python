@@ -1,4 +1,5 @@
 from project import encode
+from project import decode
 import pytest
 
 
@@ -13,3 +14,11 @@ def test_encode_phrase():
 def test_encode_nonalpha():
     with pytest.raises(ValueError):
         encode("This is CS50", 2)
+
+
+def test_decode_word():
+    assert decode("CDE", 2) == "ABC"
+
+
+def test_decode_phrase():
+    assert decode("IQQF VGUV", 2) == "GOOD TEST"
