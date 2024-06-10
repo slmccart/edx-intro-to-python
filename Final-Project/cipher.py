@@ -14,11 +14,17 @@ class Cipher:
         return self._shift
 
     def encode(self, s):
+        return self.__shift_string(s, self._shift)
+
+    def decode(self, s):
+        return self.__shift_string(s, self._shift * -1)
+
+    def __shift_string(self, s, shift):
         """Encode a string using a substituion cypher, shifting each character by the value of shift"""
 
-        encoded_string = ""
+        shifted_string = ""
         for char in s:
-            int_val = ord(char) + self.shift
+            int_val = ord(char) + shift
             if int_val < Cipher.LOW_VAL:
                 delta = Cipher.LOW_VAL - int_val
                 int_val = (Cipher.HIGH_VAL + 1) - delta
@@ -26,6 +32,6 @@ class Cipher:
                 delta = int_val - Cipher.HIGH_VAL
                 int_val = (Cipher.LOW_VAL - 1) + delta
 
-            encoded_string += chr(int_val)
+            shifted_string += chr(int_val)
 
-        return encoded_string
+        return shifted_string
