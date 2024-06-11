@@ -1,9 +1,13 @@
 import sys
+import re
 from cipher import Cipher
 
 
 def main():
     phrase = input("What do you want to encode? ")
+    if not validate(phrase):
+        sys.exit("Entered phrase must only contain alpha characters or spaces")
+
     try:
         shift = int(input("Shift value: "))
     except ValueError:
@@ -18,36 +22,29 @@ def main():
     print(encoded_phrase)
 
 
-def encode(s, shift):
-    # TODO: Refactor encode and decode
-    encoded_phrase = ""
-    cipher = Cipher(shift)
+def validate(s):
+    return re.match(r"^[a-zA-Z ]+$", s)
+
+
+def __process(s, f):
+    processed_phrase = ""
 
     words = s.upper().split(" ")
-    for word in words:
-        # Check for non-alpha
-        if not word.isalpha():
-            raise ValueError
-        else:
-            # TODO: Opportunity to use map with encode or decode as the function?
-            encoded_phrase += cipher.encode(word) + " "
+    processed_words = map(f, words)
 
-    return encoded_phrase.strip()
+    for word in processed_words:
+        processed_phrase += word + " "
+    return processed_phrase.strip()
+
+
+def encode(s, shift):
+    cipher = Cipher(shift)
+    return __process(s, cipher.encode)
 
 
 def decode(s, original_shift):
-    decoded_phrase = ""
     cipher = Cipher(original_shift)
-
-    words = s.upper().split(" ")
-    for word in words:
-        # Check for non-alpha
-        if not word.isalpha():
-            raise ValueError
-        else:
-            decoded_phrase += cipher.decode(word) + " "
-
-    return decoded_phrase.strip()
+    return __process(s, cipher.decode)
 
 
 if __name__ == "__main__":

@@ -1,5 +1,6 @@
 from project import encode
 from project import decode
+from project import validate
 import pytest
 
 
@@ -11,9 +12,12 @@ def test_encode_phrase():
     assert encode("This is a test", 2) == "VJKU KU C VGUV"
 
 
-def test_encode_nonalpha():
-    with pytest.raises(ValueError):
-        encode("This is CS50", 2)
+def test_validate_valid():
+    assert validate("This is a test")
+
+
+def test_validate_nonalpha():
+    assert not validate("This is CS50")
 
 
 def test_decode_word():
