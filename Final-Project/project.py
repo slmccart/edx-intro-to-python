@@ -1,10 +1,40 @@
 import sys
 import re
+import argparse
 from cipher import Cipher
 
 
 def main():
-    phrase = input("What do you want to encode? ")
+    parser = argparse.ArgumentParser(
+        description="Encode or decode text with a simple substitution cipher"
+    )
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument(
+        "-e",
+        "--encode",
+        action="store_true",
+        help="Run in encode mode to encode a string",
+    )
+    group.add_argument(
+        "-d",
+        "--decode",
+        action="store_true",
+        help="Run in decode mode to decode a string",
+    )
+    args = parser.parse_args()
+
+    if args.encode:
+        print("Encoding")
+        verb = "encode"
+        f = encode
+    elif args.decode:
+        print("Decoding")
+        verb = "decode"
+        f = decode
+    else:
+        sys.exit("Unrecognized argument")
+
+    phrase = input(f"What do you want to {verb}? ")
     if not validate(phrase):
         sys.exit("Entered phrase must only contain alpha characters or spaces")
 
@@ -13,13 +43,10 @@ def main():
     except ValueError:
         sys.exit("Shift value must be an integer")
 
-    try:
-        encoded_phrase = encode(phrase, shift)
-    except ValueError:
-        sys.exit("Entered phrase must only contain alpha characters or spaces")
+    processed_phrase = f(phrase, shift)
 
     print(phrase.upper())
-    print(encoded_phrase)
+    print(processed_phrase)
 
 
 def validate(s):
