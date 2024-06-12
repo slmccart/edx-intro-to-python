@@ -1,7 +1,6 @@
 from project import encode
 from project import decode
 from project import validate
-import pytest
 
 
 def test_encode_word():
